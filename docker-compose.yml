@@ -1,0 +1,12 @@
+services:
+  database:
+    image: postgres:17.4-alpine
+    restart: always
+    volumes:
+        - ${DB_DATA}:/var/lib/postgres/data
+    environment:
+        POSTGRES_DB: ${DB_DATABASE}
+        POSTGRES_USER: ${DB_USERNAME}
+        POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - 5432:5432
