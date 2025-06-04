@@ -33,19 +33,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if($request->user()->role === 'coletor') {
-            return redirect()->intended(route('dashboard.coletor', absolute: false));
-        }
-
-        if($request->user()->role === 'comercio') {
-            return redirect()->intended(route('dashboard.comercio', absolute: false));
-        }
-
-        if($request->user()->role === 'cooperativa') {
-            return redirect()->intended(route('dashboard.cooperativa', absolute: false));
-        }
-
-        return redirect('/login')->with('error', 'invalid data');
+        return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**
