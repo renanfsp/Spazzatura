@@ -26,7 +26,7 @@ WORKDIR /var/www
 COPY . .
 
 RUN chown -R www-data:www-data /var/www \
-    && composer install --no-dev --optimize-autoloader composer install --no-dev --optimize-autoloader \
+    && composer install --no-dev --optimize-autoloader \
     && npm install \
     && npm run build:ssr
 
