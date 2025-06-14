@@ -1,4 +1,4 @@
-FROM php:8-fpm
+FROM php:8.4-fpm
 
 RUN apt-get update && apt-get install -y \
     curl \
@@ -25,12 +25,13 @@ WORKDIR /var/www
 
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader
-
-RUN npm install && npm run build:ssr
-
-RUN chown -R www-data:www-data /var/www
+RUN chown -R www-data:www-data /var/www \
+    && npm install \
+    && npm run build:ssr \
+    && composer install --no-dev --optimize-autoloader composer install --no-dev --optimize-autoloader
 
 EXPOSE 9000
+
+USER www-data
 
 CMD ["php-fpm"]
